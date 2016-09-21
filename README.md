@@ -24,8 +24,10 @@ Wiimote4JavaはWiimoteをJavaで使うためのライブラリです。
 - WMP(RVL-026)
 
 ## Dependencies
----Wiimote4Java
+```
+Wiimote4Java
  |
  ---Pure Java HID-API
   |
   ---JNA
+```
