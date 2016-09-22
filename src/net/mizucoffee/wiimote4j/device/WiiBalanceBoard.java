@@ -1,4 +1,4 @@
-package com.mizucoffee.wiimote4j.device;
+package net.mizucoffee.wiimote4j.device;
 
 import java.io.IOException;
 import java.util.List;

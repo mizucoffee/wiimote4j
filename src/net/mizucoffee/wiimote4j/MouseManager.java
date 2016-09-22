@@ -1,4 +1,4 @@
-package com.mizucoffee.wiimote4j;
+package net.mizucoffee.wiimote4j;
 
 import com.sun.jna.Library;
 import com.sun.jna.Native;

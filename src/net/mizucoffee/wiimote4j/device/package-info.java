@@ -3,4 +3,4 @@
 * WiimoteやWiiBalanceBoardといった機器と通信するパッケージです。
 * また、通信を管理するためのクラスもあります。
 */
-package com.mizucoffee.wiimote4j.device;
+package net.mizucoffee.wiimote4j.device;

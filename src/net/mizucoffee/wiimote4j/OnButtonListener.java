@@ -1,4 +1,4 @@
-package com.mizucoffee.wiimote4j;
+package net.mizucoffee.wiimote4j;
 import java.util.EventListener;
 
 /**
