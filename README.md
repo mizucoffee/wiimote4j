@@ -1,7 +1,7 @@
-# Wiimote4Java
+# Wiimote4J
 
 ## What's this
-Wiimote4JavaはWiimoteをJavaで使うためのライブラリです。
+Wiimote4JはWiimoteをJavaで使うためのライブラリです。
 
 ## Full Supported Devices
 ### PC
