@@ -33,4 +33,4 @@ Wiimote4Java
 ```
 
 ## License
-[MIT][http://kawakawaritsuki.mit-license.org] (c) [@kawakawaritsuki](https://github.com/kawakawaritsuki)
+[MIT](http://kawakawaritsuki.mit-license.org) (c) [@kawakawaritsuki](https://github.com/kawakawaritsuki)
