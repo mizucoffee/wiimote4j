@@ -31,3 +31,6 @@ Wiimote4Java
   |
   ---JNA
 ```
+
+## License
+[MIT][http://kawakawaritsuki.mit-license.org] (c) [@kawakawaritsuki](https://github.com/kawakawaritsuki)
