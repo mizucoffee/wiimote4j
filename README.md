@@ -1,9 +1,9 @@
 # Wiimote4J
 
 ## What's this
-Wiimote4JはWiimoteをJavaで使うためのライブラリです。
+Twitter4J is an unofficial Java library for the Wiimote.
 
-## Full Supported Devices
+## Fully Supported Devices
 ### PC
 - Windows
 - Mac OS X
@@ -25,11 +25,11 @@ Wiimote4JはWiimoteをJavaで使うためのライブラリです。
 
 ## Dependencies
 ```
-Wiimote4Java
+JNA
  |
  ---Pure Java HID-API
   |
-  ---JNA
+  ---Wiimote4Java
 ```
 
 ## License
