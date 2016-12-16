@@ -1,7 +1,7 @@
 # Wiimote4J
 
 ## What's this
-Twitter4J is an unofficial Java library for the Wiimote.
+Wiimote4J is an unofficial Java library for the Wiimote.
 
 ## Fully Supported Devices
 ### PC
