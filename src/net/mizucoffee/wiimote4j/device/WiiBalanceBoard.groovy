@@ -39,7 +39,7 @@ public class WiiBalanceBoard extends Wiimote{
 		}else{
 			data = "0000";
 		}
-		byte[] b = {0x11,(byte) Integer.parseInt(new StringBuilder(data).reverse()+"0000",2)};
+		byte[] b = [0x11,(byte) Integer.parseInt(new StringBuilder(data).reverse()+"0000",2)];
 		mWiimoteDev.setOutputReport(b[0],b , b.length);
 	}
 }

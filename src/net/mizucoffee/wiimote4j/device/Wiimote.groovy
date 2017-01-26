@@ -5,6 +5,8 @@ import java.util.EventListener
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.codehaus.groovy.classgen.ReturnAdder
+
 import purejavahidapi.DeviceRemovalListener;
 import purejavahidapi.HidDevice;
 import purejavahidapi.HidDeviceInfo;
@@ -21,35 +23,64 @@ import purejavahidapi.PureJavaHidApi;
 
 public class Wiimote {
 	
+	HidDevice mWiimoteDev;
+	def WIMOTE_ONLY_REPORT_MODE = 0x30;
+	def WIMOTE_NUNCHUCK_REPORT_MODE = 0x34;
+	def led = "0000";
+	def isChecked = false;
+	
+	static int WIIMOTE(){0}
+	static int WIIBALANCE_BOARD(){1}
+
 	/**
-	 * HidDeviceとしての接続情報が格納されています。
-	 * 
+	 * 機器に接続します。
+	 * 引数timeoutが0の場合タイムアウトしません。
+	 * 引数deviceIdに代入されているデバイスに接続します。
+	 * タイムアウトした場合はnullが返されます。
+	 *
 	 * @author KawakawaRitsuki
+	 * @param timeout タイムアウト時間を指定します。
+	 * @param deviceId デバイスを指定します。
+	 * @return 接続結果が返されます。
 	 * @version 0.1
 	 */
-	protected HidDevice mWiimoteDev;
-	public final static byte WIMOTE_ONLY_REPORT_MODE = 30;
-	public final static byte WIMOTE_NUNCHUCK_REPORT_MODE = 34;
-	private def led;
-	private def isChecked = false;
+	boolean connect(int timeout,int deviceId){
+		if (deviceId != WIIMOTE() && deviceId != WIIBALANCE_BOARD()) return;
+		for (int i = 0;timeout == 0 || i < timeout;i++){
+			List<HidDeviceInfo> devList = PureJavaHidApi.enumerateDevices();
+			devList.each{
+				if (it.getVendorId() == 1406 && it.getProductId() == 774)
+					if (it.getProductString() == "Nintendo RVL-CNT-01" && deviceId == WIIMOTE()){
+						mWiimoteDev = PureJavaHidApi.openDevice(it.getPath());
+						return true;
+					}
+					if (it.getProductString() == "Nintendo RVL-WBC-01" && deviceId == WIIBALANCE_BOARD()) {
+						mWiimoteDev = PureJavaHidApi.openDevice(it.getPath());
+						return true;
+					}
+			}
+			if(mWiimoteDev != null) return true;
+			Thread.sleep(1000);
+		}
+		return false;
+	}
 	
 	/**
-	 * HidDeviceを代入するコンストラクタです。
+	 * 接続処理用コンストラクタ。諸設定をします。
 	 * 
 	 * @author KawakawaRitsuki
 	 * @param info WiimoteのHidDeviceInfo
 	 * @version 0.1
 	 */
-	public Wiimote(HidDeviceInfo info){
+	public Wiimote(int timeout,int deviceId){
 		try {
-			mWiimoteDev = PureJavaHidApi.openDevice(info.getPath());
+			if (!connect(timeout,deviceId)) return;//error throw
+			
 			mWiimoteDev.setInputReportListener(new InputReportListener() {
 				@Override
 				public void onInputReport(HidDevice source, byte Id, byte[] b, int len) {
 					def s = Integer.toBinaryString(b[3]).padLeft(8,'0')
-					println s
 					led = s[0..3]
-					println led
 					isChecked = true;
 					
 					listener.onInputReport(source,Id,b,len)
@@ -68,7 +99,7 @@ public class Wiimote {
 	 * @version 0.1
 	 */
 	public boolean isConnected(){
-		return mWiimoteDev != null;
+		mWiimoteDev != null
 	}
 	
 	/**
@@ -190,6 +221,7 @@ public class Wiimote {
 		this.listener = listener;
 	}
 	private DeviceInputReportListener listener;
+	
 }
 
 public interface DeviceInputReportListener extends EventListener {
