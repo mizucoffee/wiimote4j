@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="wiimote4j:jar">
+    <output-path>$PROJECT_DIR$/classes/artifacts/wiimote4j_jar</output-path>
+    <root id="archive" name="wiimote4j.jar">
+      <element id="module-output" name="wiimote4j" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/purejavahidapi.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/jna-4.0.0.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
